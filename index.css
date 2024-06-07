@@ -1,0 +1,900 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+body {
+    background-color: #fff;
+}
+
+.dark-mode {
+    background-color: #272727;
+}
+
+.icon-block {
+    cursor: pointer;
+}
+
+.mode-icon {
+    color: yellow;
+    font-size: 18px;
+}
+
+.mode-icon--dark {
+    color: #ccc;
+    font-size: 18px;
+}
+
+h1,
+h2,
+h3,
+div,
+ul,
+li,
+p,
+a,
+svg,
+use,
+span,
+label,
+form {
+    list-style-type: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Стилі для основного контейнера форми */
+.bamboo {
+    text-align: center;
+    top: 40%;
+}
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 300px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Стилі для заголовка форми */
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.notise {
+    color: red;
+}
+
+/* Стилі для лейблів інпутів */
+.form-label {
+    display: block;
+    font-weight: bold;
+}
+
+/* Стилі для інпутів */
+.form-input {
+    width: 94%;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 8px;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.error::placeholder {
+    color: red;
+}
+
+.form-input:focus {
+    outline: 1px solid #68e2e4;
+}
+
+.placeholder {
+    padding: 11px 8px 5px 8px;
+}
+
+/* Стилі для кнопки */
+.form button {
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: linear-gradient(to right, #68e2e4, #5545f4);
+    transition: background 0.3s ease;
+
+}
+
+/* Змінити стилі кнопки при наведенні */
+.form button:hover {
+    background: linear-gradient(to right, #5545f4, #68e2e4);
+}
+
+/* Стилі для посилання на створення нового акаунту */
+.form-account {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-account a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Змінити стилі посилання при наведенні */
+.form-account a:hover {
+    text-decoration: underline;
+}
+
+.form-block {
+    margin-bottom: 20px;
+}
+
+/* Загальні стилі для інпута файлу */
+.button-input {
+    display: none;
+}
+
+/* Стилізація для макету кнопки */
+.custom-file-upload {
+    display: inline-block;
+    padding: 5px 15px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(to right, #68e2e4, #5545f4);
+}
+
+.custom-file-upload:hover {
+    background: linear-gradient(to right, #5545f4, #68e2e4);
+}
+
+/* Стилізація для інпута файлу, що є невидимим поверх кнопки */
+.custom-file-upload input {
+    display: none;
+}
+
+.button-file {
+    margin-top: 10px;
+}
+
+/* Accaunt */
+.account {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.account-img {
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+
+.account-title {
+    margin: 15 0px;
+    font-size: 24px;
+}
+
+.account-button {
+    display: block;
+    margin-top: 15px;
+    padding: 5px 20px;
+    background: linear-gradient(to right, #68e2e4, #5545f4);
+    color: black;
+    text-decoration: none;
+    border: transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.account-button:hover {
+    background: linear-gradient(to right, #5545f4, #68e2e4);
+    color: #fff;
+}
+
+/* фгамщйурим */
+.custom-placeholder {
+    position: relative;
+}
+
+.form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.placeholder-text {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-65%);
+    color: #aaa;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.2s;
+}
+
+.form-input:focus+.placeholder-text {
+    opacity: 0;
+}
+
+.form-block {
+    display: flex;
+    align-items: center;
+}
+
+.form-checkbox {
+    display: none;
+}
+
+.custom-checkbox-label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.custom-checkbox-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid #555;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.custom-checkbox-label.errorCheckbox::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    border: 2px solid red;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.custom-checkbox-label::after {
+    content: '\2713';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #555;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#customCheckbox:checked+.custom-checkbox-label::before {
+    background-color: #68e2e4;
+    border-color: #68e2e4;
+}
+
+#customCheckbox:checked+.custom-checkbox-label::after {
+    opacity: 1;
+}
+
+/* change photo */
+
+.account-block {
+    margin-bottom: 10px;
+}
+
+.account-button__delete {
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 0px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    background: none;
+}
+
+.account-button__delete:hover {
+    background-color: #c82333;
+    color: #fff;
+}
+
+.photo-camera {
+    background-color: #e0e0e0;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.photo-camera:hover {
+    background-color: #c82333;
+    color: #fff;
+}
+
+.no-messages__text {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.me-messages__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.me-messages {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 120px;
+}
+
+.me-messages:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+/* .me-messages--text {} */
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: 145px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    width: 13px;
+    height: 13px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.message-badge {
+    margin: auto 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px;
+    font-size: 12px;
+    width: 15px;
+    height: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-right: 10px;
+}
+
+/* Modal delete cancel */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    max-width: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content--white {
+    background-color: #fff;
+}
+
+.modal-content--dark {
+    background-color: #353535;
+}
+
+.modal-content__text {
+    margin-bottom: 20px;
+}
+
+.account-button__delete {
+    cursor: pointer;
+}
+
+.modal-content .account-button__delete:first-of-type {
+    margin-bottom: 10px;
+}
+
+.friends {
+    margin-bottom: 20px;
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 120px;
+}
+
+.friends:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.friend-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.friend-list__li {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.friend-list__img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.friend-list__name {
+    font-weight: bold;
+}
+
+.search-friend {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.search-friend__input {
+    width: 95%;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    padding: 8px;
+}
+
+.search-friend__input:focus {
+    outline: 1px solid #68e2e4;
+}
+
+.background-input {
+    background-color: #555;
+    border: none;
+}
+
+.background-input:focus {
+    outline: 1px solid #000;
+}
+
+.subscription {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.subscription-friends {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscription-buttons {
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.subscription-buttons:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+#subscribeButton {
+    color: #000;
+    background-color: silver;
+}
+
+#subscribeButton:hover {
+    background-color: rgb(112, 112, 112);
+    color: #fff;
+}
+
+#unsubscribeButton {
+    display: none;
+    background-color: #c82333;
+    text-align: center;
+    color: #fff;
+}
+
+#unsubscribeButton:hover {
+    background-color: #861924;
+}
+
+.my-friends__button {
+    background-color: #e0e0e0;
+    color: #000;
+    padding: 3px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.my-friends__button:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.textarea-container {
+    display: flex;
+    flex-direction: column;
+    height: 76vh;
+}
+
+.add-images {
+    position: relative;
+}
+
+.custom-file--uploadImage {
+
+    color: #ccc;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
+.add-images {
+    position: absolute;
+    right: 10px;
+    bottom: 72px;
+}
+
+.message-textarea {
+    padding-right: 40px;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 15px;
+    background: linear-gradient(to right, #68e2e4, #5545f4);
+}
+
+.user-name {
+    font-size: larger;
+    text-align: center;
+}
+
+.messages-container {
+    padding-top: 20px;
+    overflow-y: auto;
+}
+
+.textarea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: auto;
+
+    position: fixed;
+    bottom: 0;
+    width: 92%;
+    max-width: 400px;
+    padding-bottom: 20px;
+}
+
+.update-container {
+    position: relative;
+}
+
+.close-update--form {
+    border: none;
+    position: absolute;
+    left: 95%;
+    bottom: 18px;
+    transform: translateX(-50%);
+}
+
+.message-textarea {
+    resize: none;
+    overflow-y: hidden;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.message-button {
+    border: none;
+    cursor: pointer;
+    padding: 10px 40px;
+    border-radius: 4px;
+    max-width: 200px;
+    margin-bottom: 30px;
+    display: block;
+    margin: 0 auto;
+    background: linear-gradient(to right, #68e2e4, #5545f4);
+}
+
+.message-button:hover {
+    color: #fff;
+    background: linear-gradient(to right, #5545f4, #68e2e4);
+}
+
+.update-button .message-button[disabled] {
+    color: #ccc;
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.messages {
+    display: flex;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.message-author {
+    display: flex;
+    justify-content: center;
+}
+
+.message-img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.message-author--avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.message-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    max-width: 60%;
+    padding: 7px;
+    padding-left: 10px;
+}
+
+.message-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 0 10px 10px 10px;
+}
+
+.message-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-heder--sent_at {
+    display: flex;
+    align-items: baseline;
+}
+
+.message-heder--sent_at .message-content {
+    margin-right: 5px;
+}
+
+.message-author--name {
+    color: black;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.message-content {
+    color: #272727;
+    word-wrap: break-word;
+}
+
+.image-url {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.message-date {
+    color: #000;
+    font-size: 12px;
+}
+
+.message-date--style {
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
+.white-text {
+    color: #fff;
+}
+
+.message-actions {
+    display: flex;
+    align-items: center;
+}
+
+.delete-chat {
+    margin-bottom: 20px;
+}
+
+.message-delete--button {
+    border: none;
+    background: none;
+    border-radius: 4px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.message-button--light {
+    color: #aaaaaa;
+}
+
+/* .image-time--style {
+    vertical-align: bottom;
+} */
+
+/* .message-header .image-time--style {
+    vertical-align: bottom;
+} */
+
+.image-button--style {
+    color: #000;
+}
+
+.delete-button {
+    margin-left: 10px;
+}
+
+.custom-delete--button {
+    border: none;
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-delete--button:hover {
+    background-color: red;
+    color: #fff;
+}
+
+.custom-delete--button:not(:last-child) {
+    margin-bottom: 7px;
+}
+
+.custom-form {
+    margin-bottom: 7px;
+}
+
+.custom-change {
+    font-size: 13.5px;
+    padding: 2px 5px;
+}
+
+.message-sender .messages {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.message-sender .message-body {
+    margin-right: 10px;
+}
+
+.message-sender .message-img {
+    margin: 0;
+}
+
+.message-recipient .message-body {
+    background-color: #eeeeee;
+}
+
+.message-sender .background-sender--class {
+    background: linear-gradient(to right, #68e2e4, #5545f4);
+    border: none;
+}
+
+.message-sender .background-input {
+    background-color: #555;
+    border: none;
+}
+
+.background-messages {
+    border: none;
+    background-color: #353535;
+}
+
+.message-recipient .background-messages {
+    background-color: #353535;
+    border: none;
+}
+
+.message-recipient .recipient-white-text {
+    color: #fff;
+}
