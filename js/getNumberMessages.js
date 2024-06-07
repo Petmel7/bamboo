@@ -1,7 +1,7 @@
 
 async function getNumberMessagesAll(currentUserId) {
     try {
-        const response = await fetch('hack/actions/get-unviewed-messages-count.php', {
+        const response = await fetch('src/actions/get-unviewed-messages-count.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

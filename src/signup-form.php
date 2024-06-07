@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../hack/actions/helpers.php';
+require_once __DIR__ . '/../src/actions/helpers.php';
 
 checkGuest();
 ?>

@@ -2,7 +2,7 @@ async function deleteUserAllChat(currentUserId, recipientId, event) {
     event.preventDefault();
     const clickedUserId = event.target.dataset.userid;
     try {
-        const response = await fetch('hack/messages/delete-all-messages.php', {
+        const response = await fetch('src/messages/delete-all-messages.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

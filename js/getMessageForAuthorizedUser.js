@@ -3,7 +3,7 @@ async function getMessageForAuthorizedUser(currentUserId) {
     const messagesContainer = document.getElementById('messagesContainer');
     try {
         const [messagesResponse, userDataResponse] = await Promise.all([
-            fetch('hack/actions/get-message-for-authorized-user.php', {
+            fetch('src/actions/get-message-for-authorized-user.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -12,7 +12,7 @@ async function getMessageForAuthorizedUser(currentUserId) {
                     recipient_id: currentUserId
                 }),
             }),
-            fetch('hack/messages/get_user_by_id.php')
+            fetch('src/messages/get_user_by_id.php')
         ]);
 
         if (!messagesResponse.ok ?? !userDataResponse.ok) {
@@ -75,7 +75,7 @@ async function getMessageForAuthorizedUser(currentUserId) {
             <li class="message-conteaner">
                 <div class="message messages">
                     <a class="message-author" href='index.php?page=user-page-messages&username=${encodeURIComponent(message.user.name)}'>
-                        <img class="message-author--avatar message-img" src='hack/${message.user.avatar}' alt='${message.user.name}'>
+                        <img class="message-author--avatar message-img" src='src/${message.user.avatar}' alt='${message.user.name}'>
                     </a>
                     <div class="search-friend--add message-details ${backgroundClassMessages}">
                         <div class="message-header">

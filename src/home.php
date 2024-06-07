@@ -24,7 +24,7 @@ echo "<script>let currentUserId = " . json_encode($currentUserId) . ";</script>"
 
     <div class="account">
         <div class="account-block">
-            <img id="userAvatar" class="account-img" src="hack/<?php echo $user['avatar']; ?>" width="200px" height="200px" alt="<?php echo $user['name']; ?>">
+            <img id="userAvatar" class="account-img" src="src/<?php echo $user['avatar']; ?>" width="200px" height="200px" alt="<?php echo $user['name']; ?>">
         </div>
 
         <button class="material-symbols-outlined photo-camera" onclick="openModal()">photo_camera</button>

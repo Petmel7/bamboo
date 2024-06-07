@@ -49,8 +49,8 @@ function calculateStylesLocalStorage(isSender) {
 
 function processMessageData(sender, message, recipientWhiteText) {
     const encodedUsername = encodeURIComponent(sender.name);
-    const avatarSrc = sender ? `hack/${sender.avatar}` : '';
-    const imageSrc = `hack/${message.image_url}`;
+    const avatarSrc = sender ? `src/${sender.avatar}` : '';
+    const imageSrc = `src/${message.image_url}`;
     const messageContent = message.image_url ? '' : `<p class="change-color--title message-content ${recipientWhiteText}">${message.message_text}</p>`;
     const backgroundImage = message.image_url ? `background-image: url(${imageSrc})` : '';
     const backgroundImageSize = message.image_url ? 'max-width: 60%; width: 100%; max-height: 60%; height: 200px;' : '';

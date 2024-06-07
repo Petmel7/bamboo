@@ -13,6 +13,9 @@ socket.onmessage = async function (event) {
         const messages = messagesData.success.messages;
         const users = messagesData.success.users;
 
+        console.log('messages--->success', messages);
+        console.log('users--->success', users);
+
         if (!Array.isArray(messages) || !Array.isArray(users)) {
             console.error('Invalid messages or users format', { messages, users });
             return;
@@ -22,6 +25,9 @@ socket.onmessage = async function (event) {
     } else if (messagesData.delete) {
         const messages = messagesData.delete.messages;
         const users = messagesData.delete.users;
+
+        console.log('messages--->delete', messages);
+        console.log('users--->delete', users);
 
         if (!Array.isArray(messages) || !Array.isArray(users)) {
             console.error('Invalid messages or users format', { messages, users });
@@ -39,8 +45,8 @@ socket.onmessage = async function (event) {
             const messages = updateData.messages;
             const users = updateData.users;
 
-            console.log('messages--->', messages);
-            console.log('users--->', users);
+            console.log('messages--->update', messages);
+            console.log('users--->update', users);
 
             await displayMessages(messages, users);
         } else {
@@ -88,6 +94,8 @@ async function deleteMessage(messageId, event) {
     try {
         const deleteMessage = {
             action: 'delete',
+            sender_id: loggedInUserId,
+            recipient_id: recipientId,
             message_id: messageId
         }
 
@@ -113,7 +121,7 @@ async function addImages() {
     formData.append('recipient_id', recipientId);
 
     try {
-        const response = await fetch('hack/messages/add_images.php', {
+        const response = await fetch('src/messages/add_images.php', {
             method: 'POST',
             body: formData
         });
@@ -175,7 +183,7 @@ function handleMesageChange() {
 //Update message =================================================
 async function openUpdateFormAndCloseModal(messageId) {
     try {
-        const response = await fetch('hack/messages/get_update_messages.php', {
+        const response = await fetch('src/messages/get_update_messages.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -234,13 +242,55 @@ function closeUpdateForm() {
     hideForm.style.display = 'block';
 }
 
+// async function updateMessages(messageId, event) {
+//     event.preventDefault();
+//     try {
+//         const updateTextarea = document.getElementById('updateTextarea');
+//         const updateMessageText = updateTextarea.value.trim();
+
+//         const response = await fetch("src/messages/update_messages.php", {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({
+//                 message_id: messageId,
+//                 // sender_id: loggedInUserId,
+//                 // recipient_id: recipientId,
+//                 message_text: updateMessageText
+//             }),
+//         });
+
+//         if (response.ok) {
+//             const result = await response.json();
+//             console.log('updateResult', result);
+
+//             const updateMessages = {
+//                 action: 'update',
+//                 message_id: messageId,
+//                 sender_id: loggedInUserId,
+//                 recipient_id: recipientId,
+//                 message_text: updateMessageText
+//             }
+
+//             console.log('updateMessages', updateMessages);
+
+//             socket.send(JSON.stringify(updateMessages));
+
+//             closeUpdateForm();
+//         }
+//     } catch (error) {
+//         console.log("Error:", error);
+//     }
+// }
+
 async function updateMessages(messageId, event) {
     event.preventDefault();
     try {
         const updateTextarea = document.getElementById('updateTextarea');
         const updateMessageText = updateTextarea.value.trim();
 
-        const response = await fetch("hack/messages/update_messages.php", {
+        const response = await fetch("src/messages/update_messages.php", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -253,19 +303,25 @@ async function updateMessages(messageId, event) {
 
         if (response.ok) {
             const result = await response.json();
-            console.log('updateResult', result);
+            console.log('Update result:', result);
 
-            const updateMessages = {
-                action: 'update',
-                message_id: messageId,
-                message_text: updateMessageText
+            if (result.success) {
+                const updateMessages = {
+                    action: 'update',
+                    message_id: messageId,
+                    sender_id: loggedInUserId,
+                    recipient_id: recipientId,
+                    message_text: updateMessageText
+                };
+
+                console.log('Sending update to WebSocket:', updateMessages);
+
+                socket.send(JSON.stringify(updateMessages));
+
+                closeUpdateForm();
+            } else {
+                console.error('Update failed:', result.error);
             }
-
-            console.log('updateMessages', updateMessages);
-
-            socket.send(JSON.stringify(updateMessages));
-
-            closeUpdateForm();
         }
     } catch (error) {
         console.log("Error:", error);

@@ -14,7 +14,7 @@ async function searchFriends() {
                 return;
             }
 
-            const response = await fetch('hack/search/search-friends.php', {
+            const response = await fetch('src/search/search-friends.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

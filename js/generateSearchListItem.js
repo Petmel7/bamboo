@@ -7,7 +7,7 @@ function generateSearchListItem(friends) {
             friendsContainer.innerHTML += `
                 <li class="friend-list__li">
                     <a href='index.php?page=user&username=${encodeURIComponent(friend.name)}'>
-                        <img class="friend-list__img" src='hack/${friend.avatar}' alt='${friend.name}'>
+                        <img class="friend-list__img" src='src/${friend.avatar}' alt='${friend.name}'>
                         <p class="friend-list__name">${friend.name}</p>
                     </a>
                 </li>`;

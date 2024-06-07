@@ -13,7 +13,7 @@ async function hisSearchSubscribers(hisUserId) {
                 return;
             }
 
-            const response = await fetch('hack/search/search-his-subscribers.php', {
+            const response = await fetch('src/search/search-his-subscribers.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

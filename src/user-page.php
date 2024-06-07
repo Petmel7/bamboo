@@ -23,7 +23,7 @@ if (isset($_GET['username'])) {
     </header>
 
     <div class="account">
-        <img class="account-img" src="hack/<?php echo $userData['avatar']; ?>" width="200px" height="200px" alt="<?php echo $userData['name']; ?>">
+        <img class="account-img" src="src/<?php echo $userData['avatar']; ?>" width="200px" height="200px" alt="<?php echo $userData['name']; ?>">
         <h1 class="change-color--title account-title"><?php echo $userData['name']; ?></h1>
 
         <div class="subscription" id="subscription-buttons">

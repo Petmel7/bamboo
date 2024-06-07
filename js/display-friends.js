@@ -3,7 +3,7 @@ const friendsForm = document.getElementById('friendsForm');
 
 async function displayFriends() {
     try {
-        const response = await fetch('hack/actions/friends.php', {
+        const response = await fetch('src/actions/friends.php', {
             method: 'POST'
         });
 
@@ -13,7 +13,7 @@ async function displayFriends() {
             const friends = JSON.parse(friendsText);
 
             generateFriendListItem(friends);
-            
+
         } else {
             throw new Error('Network response was not ok.');
         }

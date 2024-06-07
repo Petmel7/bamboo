@@ -1,6 +1,6 @@
 async function markMessageAsViewed(recipientId, loggedInUserId) {
     try {
-        const response = await fetch('hack/actions/mark-message-as-viewed.php', {
+        const response = await fetch('src/actions/mark-message-as-viewed.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
