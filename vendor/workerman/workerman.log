@@ -259,3 +259,21 @@ Stack trace:
 #4 C:\xampp\htdocs\signup-signin\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
 #5 C:\xampp\htdocs\signup-signin\webSocketServer\webSocketServer.php(281): Workerman\Worker::runAll()
 #6 {main}
+2024-06-10 16:23:50 pid:1 Error: Object of class PDO could not be converted to string in C:\xampp\htdocs\bamboo\webSocketServer\webSocketServer.php:650
+Stack trace:
+#0 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"action":"dele...')
+#1 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #54)
+#2 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\bamboo\webSocketServer\webSocketServer.php(761): Workerman\Worker::runAll()
+#6 {main}
+2024-06-10 16:29:50 pid:1 Error: Object of class PDO could not be converted to string in C:\xampp\htdocs\bamboo\webSocketServer\webSocketServer.php:650
+Stack trace:
+#0 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Connection\TcpConnection.php(646): {closure}(Object(Workerman\Connection\TcpConnection), '{"action":"dele...')
+#1 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Events\Select.php(311): Workerman\Connection\TcpConnection->baseRead(Resource id #33)
+#2 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Worker.php(1488): Workerman\Events\Select->loop()
+#3 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Worker.php(1405): Workerman\Worker::forkWorkersForWindows()
+#4 C:\xampp\htdocs\bamboo\vendor\workerman\workerman\Worker.php(560): Workerman\Worker::forkWorkers()
+#5 C:\xampp\htdocs\bamboo\webSocketServer\webSocketServer.php(761): Workerman\Worker::runAll()
+#6 {main}

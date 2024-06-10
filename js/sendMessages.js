@@ -49,6 +49,7 @@ socket.onmessage = async function (event) {
             console.log('users--->update', users);
 
             await displayMessages(messages, users);
+
         } else {
             console.error('Invalid update data format', updateData);
         }
@@ -242,87 +243,26 @@ function closeUpdateForm() {
     hideForm.style.display = 'block';
 }
 
-// async function updateMessages(messageId, event) {
-//     event.preventDefault();
-//     try {
-//         const updateTextarea = document.getElementById('updateTextarea');
-//         const updateMessageText = updateTextarea.value.trim();
-
-//         const response = await fetch("src/messages/update_messages.php", {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify({
-//                 message_id: messageId,
-//                 // sender_id: loggedInUserId,
-//                 // recipient_id: recipientId,
-//                 message_text: updateMessageText
-//             }),
-//         });
-
-//         if (response.ok) {
-//             const result = await response.json();
-//             console.log('updateResult', result);
-
-//             const updateMessages = {
-//                 action: 'update',
-//                 message_id: messageId,
-//                 sender_id: loggedInUserId,
-//                 recipient_id: recipientId,
-//                 message_text: updateMessageText
-//             }
-
-//             console.log('updateMessages', updateMessages);
-
-//             socket.send(JSON.stringify(updateMessages));
-
-//             closeUpdateForm();
-//         }
-//     } catch (error) {
-//         console.log("Error:", error);
-//     }
-// }
-
 async function updateMessages(messageId, event) {
     event.preventDefault();
     try {
         const updateTextarea = document.getElementById('updateTextarea');
         const updateMessageText = updateTextarea.value.trim();
 
-        const response = await fetch("src/messages/update_messages.php", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                message_id: messageId,
-                message_text: updateMessageText
-            }),
-        });
+        const updateMessages = {
+            action: 'update',
+            message_id: messageId,
+            sender_id: loggedInUserId,
+            recipient_id: recipientId,
+            message_text: updateMessageText
+        };
 
-        if (response.ok) {
-            const result = await response.json();
-            console.log('Update result:', result);
+        console.log('Sending update to WebSocket:', updateMessages);
 
-            if (result.success) {
-                const updateMessages = {
-                    action: 'update',
-                    message_id: messageId,
-                    sender_id: loggedInUserId,
-                    recipient_id: recipientId,
-                    message_text: updateMessageText
-                };
+        socket.send(JSON.stringify(updateMessages));
 
-                console.log('Sending update to WebSocket:', updateMessages);
+        closeUpdateForm();
 
-                socket.send(JSON.stringify(updateMessages));
-
-                closeUpdateForm();
-            } else {
-                console.error('Update failed:', result.error);
-            }
-        }
     } catch (error) {
         console.log("Error:", error);
     }
