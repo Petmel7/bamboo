@@ -23,30 +23,32 @@ socket.onmessage = async function (event) {
         await displayMessages(messages, users);
 
     } else if (messagesData.delete) {
-        const messages = messagesData.delete.messages;
-        const users = messagesData.delete.users;
+        const deleteData = messagesData.delete;
 
-        console.log('messages--->delete', messages);
-        console.log('users--->delete', users);
+        if (Array.isArray(deleteData.messages) && Array.isArray(deleteData.users)) {
+            const messages = deleteData.messages;
+            const users = deleteData.users;
 
-        if (!Array.isArray(messages) || !Array.isArray(users)) {
-            console.error('Invalid messages or users format', { messages, users });
-            return;
+            console.log('messages???', messages)
+            console.log('users???', users)
+
+            await displayMessages(messages, users);
+        } else {
+            console.error('Invalid delete data format', deleteData);
         }
-        await displayMessages(messages, users);
 
-    } else if (messagesData.action === 'update') {
+    } else if (messagesData.update) {
         const updateData = {
-            messages: messagesData.messages,
-            users: messagesData.users
+            messages: messagesData.update.messages,
+            users: messagesData.update.users
         };
 
         if (Array.isArray(updateData.messages) && Array.isArray(updateData.users)) {
             const messages = updateData.messages;
             const users = updateData.users;
 
-            console.log('messages--->update', messages);
-            console.log('users--->update', users);
+            // console.log('messages--->update', messages);
+            // console.log('users--->update', users);
 
             await displayMessages(messages, users);
 
@@ -349,3 +351,21 @@ async function displayMessages(messages, users) {
     messagesContainer.innerHTML = messagesHTML;
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
+
+
+
+
+
+
+// console.log('messagesData.delete&&&&&&&&&&', messagesData.delete);
+// const messages = messagesData.delete.messages;
+// const users = messagesData.delete.users;
+
+// console.log('messages--->delete', messages);
+// console.log('users--->delete', users);
+
+// if (!Array.isArray(messages) || !Array.isArray(users)) {
+//     console.error('Invalid messages or users format', { messages, users });
+//     return;
+// }
+// await displayMessages(messages, users);

@@ -41,8 +41,10 @@ $ws_worker->onConnect = function ($connection) use (&$connectedUsers, &$connecti
 $ws_worker->onMessage = function ($connection, $data) use (&$connectedUsers, &$connectionUserMap) {
     $message = json_decode($data, true);
 
-    if (isset($message['action']) && $message['action'] === 'delete' && isset($message['message_id'])) {
+    if (isset($message['action']) && $message['action'] === 'delete' && isset($message['message_id']) && isset($message['sender_id']) && isset($message['recipient_id'])) {
         $messageId = $message['message_id'];
+        $senderId = $message['sender_id'];
+        $recipientId = $message['recipient_id'];
 
         try {
             $conn = getPDO();
@@ -62,6 +64,8 @@ $ws_worker->onMessage = function ($connection, $data) use (&$connectedUsers, &$c
                 'messages' => $messages,
                 'users' => $users
             ];
+
+            var_dump($responseData);
 
             foreach ($connectedUsers as $userConnection) {
                 if (isset($connectionUserMap[$userConnection->id])) {
@@ -98,23 +102,23 @@ $ws_worker->onMessage = function ($connection, $data) use (&$connectedUsers, &$c
             $users = getAllUsers();
 
             $responseData = [
-                'action' => 'update',
                 'message_id' => $messageId,
                 'message_text' => $messageText,
                 'messages' => $messages,
                 'users' => $users
             ];
 
+            // var_dump($responseData);
+
             foreach ($connectedUsers as $userConnection) {
                 if (isset($connectionUserMap[$userConnection->id])) {
                     list($senderIdMap, $recipientIdMap) = $connectionUserMap[$userConnection->id];
                     if (($senderIdMap == $senderId && $recipientIdMap == $recipientId) || ($senderIdMap == $recipientId && $recipientIdMap == $senderId)) {
-                        $userConnection->send(json_encode($responseData));
+                        $userConnection->send(json_encode(['update' => $responseData]));
                     }
                 }
             }
         } catch (PDOException $e) {
-            // Відправити JSON-відповідь з помилкою
             $connection->send(json_encode(['error' => "Error updating message: " . $e->getMessage()]));
         } finally {
             if ($conn !== null) {
@@ -135,6 +139,8 @@ $ws_worker->onMessage = function ($connection, $data) use (&$connectedUsers, &$c
             'messages' => $messages,
             'users' => $users
         ];
+
+        // var_dump($responseData);
 
         foreach ($connectedUsers as $userConnection) {
             if (isset($connectionUserMap[$userConnection->id])) {
