@@ -1,6 +1,6 @@
 <?php
 
-require_once '../actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 try {
     $conn = getPDO();

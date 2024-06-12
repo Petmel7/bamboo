@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 
