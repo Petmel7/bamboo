@@ -1,6 +1,6 @@
 async function getFriendsData(loggedInUserId) {
     try {
-        const response = await fetch('src/subscription/get_subscriptions.php', {
+        const response = await fetch('server/src/subscription/get_subscriptions.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

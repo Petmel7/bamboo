@@ -1,6 +1,6 @@
 async function mySubscribersList(loggedInUserId) {
     try {
-        const response = await fetch('src/subscription/get_subscribers.php', {
+        const response = await fetch('server/src/subscription/get_subscribers.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

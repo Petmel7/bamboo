@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 if (isset($_GET['username'])) {
     $username = $_GET['username'];
@@ -16,7 +16,7 @@ if (isset($_GET['username'])) {
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once __DIR__ . '/../components/head.php'; ?>
+<?php include_once __DIR__ . '../../components/head.php'; ?>
 
 <body>
 

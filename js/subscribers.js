@@ -1,7 +1,7 @@
 
 async function subscribe(targetUserId) {
     try {
-        const response = await fetch('src/subscription/add_subscription.php', {
+        const response = await fetch('server/src/subscription/add_subscription.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ async function subscribe(targetUserId) {
 
 async function unsubscribe(targetUserId) {
     try {
-        const response = await fetch('src/subscription/remove_subscription.php', {
+        const response = await fetch('server/src/subscription/remove_subscription.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ async function unsubscribe(targetUserId) {
 
 async function getCurrentUserSubscriptions(targetUserId) {
     try {
-        const response = await fetch('src/subscription/get_subscriptions.php', {
+        const response = await fetch('server/src/subscription/get_subscriptions.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

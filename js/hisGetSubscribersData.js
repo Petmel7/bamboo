@@ -1,6 +1,6 @@
 async function hisGetSubscribersData(hisUserId) {
     try {
-        const response = await fetch(`src/subscription/get_his_subscribers.php?user_id=${hisUserId}`);
+        const response = await fetch(`server/src/subscription/get_his_subscribers.php?user_id=${hisUserId}`);
         console.log('hisUserId', hisUserId);
 
         if (response.ok) {

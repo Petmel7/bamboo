@@ -20,7 +20,7 @@ async function signupSubmitForm() {
     }
 
     try {
-        const response = await fetch('php/signup.php', {
+        const response = await fetch('server/src/sign/signup.php', {
             method: 'POST',
             body: formData
         });

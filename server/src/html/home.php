@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 checkAuth();
 
@@ -13,18 +13,18 @@ echo "<script>let currentUserId = " . json_encode($currentUserId) . ";</script>"
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once __DIR__ . '/../components/head.php'; ?>
+<?php include_once __DIR__ . '../../components/head.php'; ?>
 
 <body>
     <header class="user-header">
         <h1 class="user-name">Home</h1>
 
-        <?php include_once __DIR__ . '/../components/html.php'; ?>
+        <?php include_once __DIR__ . '../../components/html.php'; ?>
     </header>
 
     <div class="account">
         <div class="account-block">
-            <img id="userAvatar" class="account-img" src="src/<?php echo $user['avatar']; ?>" width="200px" height="200px" alt="<?php echo $user['name']; ?>">
+            <img id="userAvatar" class="account-img" src="server/src/<?php echo $user['avatar']; ?>" width="200px" height="200px" alt="<?php echo $user['name']; ?>">
         </div>
 
         <button class="material-symbols-outlined photo-camera" onclick="openModal()">photo_camera</button>

@@ -3,7 +3,7 @@ const friendsForm = document.getElementById('friendsForm');
 
 async function displayFriends() {
     try {
-        const response = await fetch('src/actions/friends.php', {
+        const response = await fetch('server/src/actions/friends.php', {
             method: 'POST'
         });
 

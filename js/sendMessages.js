@@ -10,18 +10,17 @@ socket.onmessage = async function (event) {
     console.log('Received message data:', messagesData);
 
     if (messagesData.success) {
-        const messages = messagesData.success.messages;
-        const users = messagesData.success.users;
+        const sendData = messagesData.success;
 
-        console.log('messages--->success', messages);
-        console.log('users--->success', users);
+        if (Array.isArray(sendData.messages) && Array.isArray(sendData.users)) {
+            const messages = sendData.messages;
+            const users = sendData.users;
 
-        if (!Array.isArray(messages) || !Array.isArray(users)) {
-            console.error('Invalid messages or users format', { messages, users });
-            return;
+            await displayMessages(messages, users);
+
+        } else {
+            console.error('Invalid delete data format', sendData);
         }
-        await displayMessages(messages, users);
-
     } else if (messagesData.delete) {
         const deleteData = messagesData.delete;
 
@@ -29,10 +28,12 @@ socket.onmessage = async function (event) {
             const messages = deleteData.messages;
             const users = deleteData.users;
 
-            console.log('messages???', messages)
-            console.log('users???', users)
+            console.log('Displaying messages for delete case');
+            console.log('messages:', messages);
+            console.log('users:', users);
 
             await displayMessages(messages, users);
+
         } else {
             console.error('Invalid delete data format', deleteData);
         }
@@ -46,9 +47,6 @@ socket.onmessage = async function (event) {
         if (Array.isArray(updateData.messages) && Array.isArray(updateData.users)) {
             const messages = updateData.messages;
             const users = updateData.users;
-
-            // console.log('messages--->update', messages);
-            // console.log('users--->update', users);
 
             await displayMessages(messages, users);
 
@@ -66,7 +64,6 @@ socket.onclose = function () {
     console.log('WebSocket connection closed');
 };
 
-//Send messages =============================================
 async function sendMessages(recipientId, event) {
     event.preventDefault();
     const messageTextarea = document.getElementById('messageTextarea');
@@ -91,7 +88,6 @@ async function sendMessages(recipientId, event) {
     messageTextarea.value = '';
 }
 
-//Delete messages ===============================================
 async function deleteMessage(messageId, event) {
     event.preventDefault();
     try {
@@ -102,6 +98,7 @@ async function deleteMessage(messageId, event) {
             message_id: messageId
         }
 
+        console.log('Sending delete message to WebSocket:', deleteMessage);
         socket.send(JSON.stringify(deleteMessage));
 
     } catch (error) {
@@ -109,7 +106,6 @@ async function deleteMessage(messageId, event) {
     }
 }
 
-//add images ===============================================
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("imagesButton").addEventListener("click", function () {
         addImages();
@@ -124,7 +120,7 @@ async function addImages() {
     formData.append('recipient_id', recipientId);
 
     try {
-        const response = await fetch('src/messages/add_images.php', {
+        const response = await fetch('server/src/messages/add_images.php', {
             method: 'POST',
             body: formData
         });
@@ -141,6 +137,7 @@ async function addImages() {
                 recipient_id: recipientId
             };
 
+            console.log('Sending add image to WebSocket:', addImages);
             socket.send(JSON.stringify(addImages));
         }
 
@@ -183,10 +180,9 @@ function handleMesageChange() {
     }
 }
 
-//Update message =================================================
 async function openUpdateFormAndCloseModal(messageId) {
     try {
-        const response = await fetch('src/messages/get_update_messages.php', {
+        const response = await fetch('server/src/messages/get_update_messages.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -270,7 +266,6 @@ async function updateMessages(messageId, event) {
     }
 }
 
-//Display messages ===============================================
 async function displayMessages(messages, users) {
     if (!Array.isArray(messages) || !Array.isArray(users)) {
         console.error('Invalid messages or users format', { messages, users });
@@ -351,21 +346,3 @@ async function displayMessages(messages, users) {
     messagesContainer.innerHTML = messagesHTML;
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
-
-
-
-
-
-
-// console.log('messagesData.delete&&&&&&&&&&', messagesData.delete);
-// const messages = messagesData.delete.messages;
-// const users = messagesData.delete.users;
-
-// console.log('messages--->delete', messages);
-// console.log('users--->delete', users);
-
-// if (!Array.isArray(messages) || !Array.isArray(users)) {
-//     console.error('Invalid messages or users format', { messages, users });
-//     return;
-// }
-// await displayMessages(messages, users);

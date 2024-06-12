@@ -14,7 +14,7 @@ async function mySearchFriends() {
                 return;
             }
 
-            const response = await fetch('src/search/search-my-friends.php', {
+            const response = await fetch('server/src/search/search-my-friends.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

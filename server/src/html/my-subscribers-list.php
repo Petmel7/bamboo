@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 $loggedInUserId = currentUserId();
 
@@ -10,13 +10,13 @@ echo "<script>let loggedInUserId = " . json_encode($loggedInUserId) . ";</script
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once __DIR__ . '/../components/head.php'; ?>
+<?php include_once __DIR__ . '../../components/head.php'; ?>
 
 <body>
     <header class="user-header">
         <h1 class="user-name">My subscribers</h1>
 
-        <?php include_once __DIR__ . '/../components/html.php'; ?>
+        <?php include_once __DIR__ . '../../components/html.php'; ?>
     </header>
 
     <section class="container">

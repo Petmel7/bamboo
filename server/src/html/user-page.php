@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 if (isset($_GET['username'])) {
     $username = $_GET['username'];
@@ -13,17 +13,17 @@ if (isset($_GET['username'])) {
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once __DIR__ . '/../components/head.php'; ?>
+<?php include_once __DIR__ . '../../components/head.php'; ?>
 
 <body>
     <header class="user-header">
         <h1 class="user-name"><?php echo $userData['name'] ?></h1>
 
-        <?php include_once __DIR__ . '/../components/html.php'; ?>
+        <?php include_once __DIR__ . '../../components/html.php'; ?>
     </header>
 
     <div class="account">
-        <img class="account-img" src="src/<?php echo $userData['avatar']; ?>" width="200px" height="200px" alt="<?php echo $userData['name']; ?>">
+        <img class="account-img" src="server/src/<?php echo $userData['avatar']; ?>" width="200px" height="200px" alt="<?php echo $userData['name']; ?>">
         <h1 class="change-color--title account-title"><?php echo $userData['name']; ?></h1>
 
         <div class="subscription" id="subscription-buttons">

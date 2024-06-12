@@ -2,7 +2,7 @@ async function changePhoto() {
     const form = document.getElementById('photoForm');
     const formData = new FormData(form);
     try {
-        const response = await fetch('src/actions/change-photo.php', {
+        const response = await fetch('server/src/actions/change-photo.php', {
             method: 'POST',
             body: formData
         });

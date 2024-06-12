@@ -9,7 +9,7 @@ function generateFriendListItem(friends) {
     const friendsHTML = friends.map(friend => `
         <li class="friend-list__li">
             <a href='index.php?page=user&username=${encodeURIComponent(friend.name)}'>
-                <img class="friend-list__img" src='src/${friend.avatar}' alt='${friend.name}'>
+                <img class="friend-list__img" src='server/src/${friend.avatar}' alt='${friend.name}'>
                 <p class="change-color--title friend-list__name ${textColorClass}">${friend.name}</p>
             </a>
         </li>

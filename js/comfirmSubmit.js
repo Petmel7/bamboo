@@ -1,6 +1,6 @@
 async function comfirmSubmit() {
     try {
-        const response = await fetch('src/actions/delete-photo.php', {
+        const response = await fetch('server/src/actions/delete-photo.php', {
             method: 'POST'
         })
         if (response.ok) {

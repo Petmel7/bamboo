@@ -1,7 +1,7 @@
 async function logout(event) {
     event.preventDefault();
     try {
-        const response = await fetch('src/actions/logout.php', {
+        const response = await fetch('server/src/actions/logout.php', {
             method: 'POST'
         });
 

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 $currentUserId = currentUserId();
 
@@ -10,7 +10,7 @@ echo "<script>let currentUserId = " . json_encode($currentUserId) . ";</script>"
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once __DIR__ . '/../components/head.php'; ?>
+<?php include_once __DIR__ . '../../components/head.php'; ?>
 
 <body>
     <header class="user-header">

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../src/actions/helpers.php';
+require_once __DIR__ . '../../src/actions/helpers.php';
 
 checkGuest();
 ?>
@@ -7,7 +7,7 @@ checkGuest();
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include_once __DIR__ . '/../components/head.php'; ?>
+<?php include_once __DIR__ . '../../components/head.php'; ?>
 
 <body>
     <h1 class="bamboo">Bamboo</h1>

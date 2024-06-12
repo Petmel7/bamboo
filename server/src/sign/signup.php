@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../src/actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 $uploadPath = '../../uploads';
 

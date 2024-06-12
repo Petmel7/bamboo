@@ -1,6 +1,6 @@
 async function hisGetFriendsData(hisUserId) {
     try {
-        const response = await fetch(`src/subscription/get_his_subscriptions.php?user_id=${hisUserId}`);
+        const response = await fetch(`server/src/subscription/get_his_subscriptions.php?user_id=${hisUserId}`);
 
         if (response.ok) {
             const friends = await response.json();

@@ -49,13 +49,12 @@ $ws_worker->onMessage = function ($connection, $data) use (&$connectedUsers, &$c
         try {
             $conn = getPDO();
 
-            $sql = "DELETE FROM `messages` WHERE id = :message_id";
+            $sql = "DELETE FROM `messages` WHERE id = :message_id AND sender_id = :sender_id AND recipient_id = :recipient_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':message_id', $messageId, PDO::PARAM_INT);
+            $stmt->bindParam(':sender_id', $senderId, PDO::PARAM_INT);
+            $stmt->bindParam(':recipient_id', $recipientId, PDO::PARAM_INT);
             $stmt->execute();
-
-            $senderId = $message['sender_id'];
-            $recipientId = $message['recipient_id'];
 
             $messages = getMessagesByRecipient($senderId, $recipientId);
             $users = getAllUsers();
@@ -65,7 +64,7 @@ $ws_worker->onMessage = function ($connection, $data) use (&$connectedUsers, &$c
                 'users' => $users
             ];
 
-            var_dump($responseData);
+            // var_dump($responseData);
 
             foreach ($connectedUsers as $userConnection) {
                 if (isset($connectionUserMap[$userConnection->id])) {
