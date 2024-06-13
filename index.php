@@ -3,16 +3,16 @@
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
         case 'signup':
-            require './server/src/html/signup-form.php';
+            require './server/src/pages/signup-form.php';
             break;
         case 'home':
-            require './server/src/html/home.php';
+            require './server/src/pages/home.php';
             break;
         case 'user':
             if (isset($_GET['username'])) {
                 $username = $_GET['username'];
 
-                require './server/src/html/user-page.php';
+                require './server/src/pages/user-page.php';
             }
             break;
         case 'friends-list':
@@ -23,14 +23,14 @@ if (isset($_GET['page'])) {
         case 'user-page-messages':
         case 'message-page':
 
-            require "./server/src/html/{$_GET['page']}.php";
+            require "./server/src/pages/{$_GET['page']}.php";
             break;
         default:
-            require './server/src/html/signin-form.php';
+            require './server/src/pages/signin-form.php';
             break;
     }
 } else {
-    require './server/src/html/signin-form.php';
+    require './server/src/pages/signin-form.php';
 }
 
 

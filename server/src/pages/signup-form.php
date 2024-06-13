@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '../../src/actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
 
 checkGuest();
 ?>
@@ -41,9 +41,9 @@ checkGuest();
         <p class="form-account">I already have an <a href="index.php?page=signin">account</a></p>
     </form>
 
-    <script src="js/forwarding.js"></script>
-    <script src="js/validation.js"></script>
-    <script src="js/signupSubmitForm.js"></script>
+    <script src="client/js/forwarding.js"></script>
+    <script src="client/js/validation.js"></script>
+    <script src="client/api/signupSubmitForm.js"></script>
 
 </body>
 

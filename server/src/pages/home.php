@@ -46,13 +46,13 @@ echo "<script>let currentUserId = " . json_encode($currentUserId) . ";</script>"
 
     </div>
 
-    <script src="js/toggleDarkMode.js"></script>
-    <script src="js/comfirmSubmit.js"></script>
-    <script src="js/logout.js"></script>
-    <script src="js/forwarding.js"></script>
-    <script src="js/changePhoto.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/getNumberMessages.js"></script>
+    <script src="client/js/toggleDarkMode.js"></script>
+    <script src="client/api/comfirmSubmit.js"></script>
+    <script src="client/api/logout.js"></script>
+    <script src="client/js/forwarding.js"></script>
+    <script src="client/api/changePhoto.js"></script>
+    <script src="client/js/modal.js"></script>
+    <script src="client/api/getNumberMessages.js"></script>
 
 </body>
 

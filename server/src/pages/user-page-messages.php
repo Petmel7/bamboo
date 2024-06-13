@@ -58,15 +58,15 @@ if (isset($_GET['username'])) {
         </div>
     </section>
 
-    <script type="module" src="componentsJs/socket.js"></script>
-    <script src="js/toggleDarkMode.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/forwarding.js"></script>
-    <script src="js/autoTextareaExpansion.js"></script>
-    <script src="utils/utilities.js"></script>
-    <script src="utils/style.js"></script>
-    <script src="js/sendMessages.js"></script>
-    <script src="js/markMessageAsViewed.js"></script>
+    <!-- <script type="module" src="componentsJs/socket.js"></script> -->
+    <script src="client/js/toggleDarkMode.js"></script>
+    <script src="client/js/modal.js"></script>
+    <script src="client/js/forwarding.js"></script>
+    <script src="client/js/autoTextareaExpansion.js"></script>
+    <script src="client/utils/utilities.js"></script>
+    <script src="client/utils/style.js"></script>
+    <script src="client/ws/ws.js"></script>
+    <script src="client/api/markMessageAsViewed.js"></script>
 
 </body>
 

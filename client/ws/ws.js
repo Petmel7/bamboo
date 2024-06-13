@@ -64,6 +64,7 @@ socket.onclose = function () {
     console.log('WebSocket connection closed');
 };
 
+//sendMessages========================================================
 async function sendMessages(recipientId, event) {
     event.preventDefault();
     const messageTextarea = document.getElementById('messageTextarea');
@@ -88,6 +89,7 @@ async function sendMessages(recipientId, event) {
     messageTextarea.value = '';
 }
 
+//deleteMessage========================================================
 async function deleteMessage(messageId, event) {
     event.preventDefault();
     try {
@@ -106,6 +108,7 @@ async function deleteMessage(messageId, event) {
     }
 }
 
+//addImages========================================================
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("imagesButton").addEventListener("click", function () {
         addImages();
@@ -146,6 +149,7 @@ async function addImages() {
     }
 }
 
+//updateMessages========================================================
 function handleImageChange() {
     const fileInput = document.getElementById('addImages');
     const imagesButton = document.getElementById('imagesButton');
@@ -266,6 +270,7 @@ async function updateMessages(messageId, event) {
     }
 }
 
+//displayMessages====================================================
 async function displayMessages(messages, users) {
     if (!Array.isArray(messages) || !Array.isArray(users)) {
         console.error('Invalid messages or users format', { messages, users });

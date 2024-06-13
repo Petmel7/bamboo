@@ -37,9 +37,9 @@ if (isset($_GET['username'])) {
         </div>
     </div>
 
-    <script src="js/toggleDarkMode.js"></script>
-    <script src="js/subscribers.js"></script>
-    <script src="js/forwarding.js"></script>
+    <script src="client/js/toggleDarkMode.js"></script>
+    <script src="client/api/subscribers.js"></script>
+    <script src="client/js/forwarding.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             getCurrentUserSubscriptions(<?php echo $userData['id']; ?>);

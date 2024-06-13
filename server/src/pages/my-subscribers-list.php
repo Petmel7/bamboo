@@ -27,13 +27,13 @@ echo "<script>let loggedInUserId = " . json_encode($loggedInUserId) . ";</script
         <ul class="friend-list" id="friendsDataContainer"></ul>
     </section>
 
-    <script src="js/toggleDarkMode.js"></script>
-    <script src="js/mySubscribersList.js"></script>
-    <script src="js/generateFriendListItem.js"></script>
-    <script src="js/mySearchFriends.js"></script>
-    <script src="js/mySearchSubscribers.js"></script>
-    <script src="js/generateSearchListItem.js"></script>
-    <script src="js/generateGetElementById.js"></script>
+    <script src="client/js/toggleDarkMode.js"></script>
+    <script src="client/api/mySubscribersList.js"></script>
+    <script src="client/js/generateFriendListItem.js"></script>
+    <script src="client/api/mySearchFriends.js"></script>
+    <script src="client/api/mySearchSubscribers.js"></script>
+    <script src="client/js/generateSearchListItem.js"></script>
+    <script src="client/js/generateGetElementById.js"></script>
 </body>
 
 </html>

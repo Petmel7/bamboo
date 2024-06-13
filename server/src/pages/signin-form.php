@@ -31,9 +31,9 @@ checkGuest();
         <p class="form-account">I don't have an <a href="index.php?page=signup">account</a> yet</p>
     </form>
 
-    <script src="js/forwarding.js"></script>
-    <script src="js/signinSubmitForm.js"></script>
-    <script src="js/validation.js"></script>
+    <script src="client/js/forwarding.js"></script>
+    <script src="client/api/signinSubmitForm.js"></script>
+    <script src="client/js/validation.js"></script>
 
 </body>
 

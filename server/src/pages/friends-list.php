@@ -23,13 +23,13 @@ require_once __DIR__ . '../../actions/helpers.php';
 
     <ul class="friend-list" id="friendsDataContainer"></ul>
 
-    <script src="js/toggleDarkMode.js"></script>
-    <script src="js/display-friends.js"></script>
-    <script src="js/generateFriendListItem.js"></script>
-    <script src="js/search-friends.js"></script>
-    <script src="js/forwarding.js"></script>
-    <script src="js/generateSearchListItem.js"></script>
-    <script src="js/generateGetElementById.js"></script>
+    <script src="client/js/toggleDarkMode.js"></script>
+    <script src="client/api/displayFriends.js"></script>
+    <script src="client/js/generateFriendListItem.js"></script>
+    <script src="client/api/searchFriends.js"></script>
+    <script src="client/js/forwarding.js"></script>
+    <script src="client/js/generateSearchListItem.js"></script>
+    <script src="client/js/generateGetElementById.js"></script>
 </body>
 
 </html>

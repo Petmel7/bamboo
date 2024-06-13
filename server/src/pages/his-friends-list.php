@@ -29,16 +29,16 @@ if (isset($_GET['username'])) {
 
     <ul class="friend-list" id="friendsDataContainer"></ul>
 
-    <script src="js/toggleDarkMode.js"></script>
-    <script src="js/forwarding.js"></script>
-    <script src="js/hisGetFriendsData.js"></script>
-    <script src="js/generateFriendListItem.js"></script>
+    <script src="client/js/toggleDarkMode.js"></script>
+    <script src="client/js/forwarding.js"></script>
+    <script src="client/api/hisGetFriendsData.js"></script>
+    <script src="client/js/generateFriendListItem.js"></script>
     <script>
         hisGetFriendsData(<?php echo $userData['id']; ?>);
     </script>
-    <script src="js/hisSearchFriends.js"></script>
-    <script src="js/generateGetElementById.js"></script>
-    <script src="js/generateSearchListItem.js"></script>
+    <script src="client/api/hisSearchFriends.js"></script>
+    <script src="client/js/generateGetElementById.js"></script>
+    <script src="client/js/generateSearchListItem.js"></script>
 
 </body>
 
