@@ -30,7 +30,6 @@ if (isset($_GET['username'])) {
     </header>
 
     <section class="container textarea-container">
-        <!-- <button id="refreshButton">Оновити повідомлення</button> -->
 
         <ul class="messages-container" id="messagesContainer"></ul>
 
@@ -44,7 +43,7 @@ if (isset($_GET['username'])) {
 
             <textarea class="search-friend--add message-textarea search-friend__input" id="messageTextarea" placeholder="Write your message" rows="1"></textarea>
             <button id="messageButton" class="message-button" type="button" onclick="sendMessages('<?php echo $userData['id']; ?>', event)">Send</button>
-            <button id="imagesButton" class="message-button images-button" type="button" style="display: none;">Send</button>
+            <button id="imagesButton" class="message-button images-button" type="button" style="display: none;">Send image</button>
         </div>
 
         <div class="textarea" id="openEditForm" style="display: none">

@@ -1,73 +1,80 @@
 
 const socket = new WebSocket(`ws://localhost:2346/?sender_id=${loggedInUserId}&recipient_id=${recipientId}`);
 
-socket.onopen = function () {
-    console.log('WebSocket connection opened');
-};
-
 socket.onmessage = async function (event) {
     const messagesData = JSON.parse(event.data);
     console.log('Received message data:', messagesData);
 
-    if (messagesData.success) {
-        const sendData = messagesData.success;
+    switch (true) {
+        case messagesData.success !== undefined:
+            const sendData = messagesData.success;
 
-        if (Array.isArray(sendData.messages) && Array.isArray(sendData.users)) {
-            const messages = sendData.messages;
-            const users = sendData.users;
+            if (Array.isArray(sendData.messages) && Array.isArray(sendData.users)) {
+                const messages = sendData.messages;
+                const users = sendData.users;
 
-            await displayMessages(messages, users);
+                await displayMessages(messages, users);
 
-        } else {
-            console.error('Invalid delete data format', sendData);
-        }
-    } else if (messagesData.delete) {
-        const deleteData = messagesData.delete;
+            } else {
+                console.error('Invalid success data format', sendData);
+            }
+            break;
 
-        if (Array.isArray(deleteData.messages) && Array.isArray(deleteData.users)) {
-            const messages = deleteData.messages;
-            const users = deleteData.users;
+        case messagesData.delete !== undefined:
+            const deleteData = messagesData.delete;
 
-            console.log('Displaying messages for delete case');
-            console.log('messages:', messages);
-            console.log('users:', users);
+            if (Array.isArray(deleteData.messages) && Array.isArray(deleteData.users)) {
+                const messages = deleteData.messages;
+                const users = deleteData.users;
 
-            await displayMessages(messages, users);
+                console.log('Displaying messages for delete case');
+                console.log('messages:', messages);
+                console.log('users:', users);
 
-        } else {
-            console.error('Invalid delete data format', deleteData);
-        }
+                await displayMessages(messages, users);
 
-    } else if (messagesData.update) {
-        const updateData = {
-            messages: messagesData.update.messages,
-            users: messagesData.update.users
-        };
+            } else {
+                console.error('Invalid delete data format', deleteData);
+            }
+            break;
 
-        if (Array.isArray(updateData.messages) && Array.isArray(updateData.users)) {
-            const messages = updateData.messages;
-            const users = updateData.users;
+        case messagesData.update !== undefined:
+            const updateData = {
+                messages: messagesData.update.messages,
+                users: messagesData.update.users
+            };
 
-            await displayMessages(messages, users);
+            if (Array.isArray(updateData.messages) && Array.isArray(updateData.users)) {
+                const messages = updateData.messages;
+                const users = updateData.users;
 
-        } else {
-            console.error('Invalid update data format', updateData);
-        }
-    } else if (messagesData.add_image) {
-        const imageData = messagesData.add_image;
-        console.log('imageData', imageData);
+                await displayMessages(messages, users);
 
-        if (Array.isArray(imageData.messages) && Array.isArray(imageData.users)) {
-            const messages = imageData.messages;
-            const users = imageData.users;
+            } else {
+                console.error('Invalid update data format', updateData);
+            }
+            break;
 
-            console.log('messages and users', messages, users);
+        case messagesData.add_image !== undefined:
+            const imageData = messagesData.add_image;
+            console.log('imageData', imageData);
 
-            await displayMessages(messages, users);
+            if (Array.isArray(imageData.messages) && Array.isArray(imageData.users)) {
+                const messages = imageData.messages;
+                const users = imageData.users;
 
-        } else {
-            console.error('Invalid add_image data format', imageData);
-        }
+                console.log('messages and users', messages, users);
+
+                await displayMessages(messages, users);
+
+            } else {
+                console.error('Invalid add_image data format', imageData);
+            }
+            break;
+
+        default:
+            console.error('Unknown message format', messagesData);
+            break;
     }
 };
 
@@ -287,6 +294,10 @@ async function updateMessages(messageId, event) {
 
 //displayMessages====================================================
 async function displayMessages(messages, users) {
+    console.log('displayMessages called');
+    console.log('messages:', messages);
+    console.log('users:', users);
+
     if (!Array.isArray(messages) || !Array.isArray(users)) {
         console.error('Invalid messages or users format', { messages, users });
         return;
