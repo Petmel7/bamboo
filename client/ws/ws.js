@@ -53,6 +53,21 @@ socket.onmessage = async function (event) {
         } else {
             console.error('Invalid update data format', updateData);
         }
+    } else if (messagesData.add_image) {
+        const imageData = messagesData.add_image;
+        console.log('imageData', imageData);
+
+        if (Array.isArray(imageData.messages) && Array.isArray(imageData.users)) {
+            const messages = imageData.messages;
+            const users = imageData.users;
+
+            console.log('messages and users', messages, users);
+
+            await displayMessages(messages, users);
+
+        } else {
+            console.error('Invalid add_image data format', imageData);
+        }
     }
 };
 

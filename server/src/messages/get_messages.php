@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '../../actions/helpers.php';
+require_once __DIR__ . '../../services/UserService.php';
 
 $message = json_decode(file_get_contents('php://input'), true);
 
@@ -16,21 +17,7 @@ if (isset($message['sender_id'], $message['recipient_id'])) {
     $messages['error'] = 'Invalid request';
 }
 
-try {
-    $conn = getPDO();
-
-    $sql = "SELECT * FROM users";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-
-    $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    $users['error'] = 'Database error: ' . $e->getMessage();
-} finally {
-    if ($conn !== null) {
-        $conn = null;
-    }
-}
+getUsers($users);
 
 $responseData = [
     'messages' => $messages,

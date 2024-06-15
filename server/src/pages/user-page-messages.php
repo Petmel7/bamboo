@@ -58,7 +58,6 @@ if (isset($_GET['username'])) {
         </div>
     </section>
 
-    <!-- <script type="module" src="componentsJs/socket.js"></script> -->
     <script src="client/js/toggleDarkMode.js"></script>
     <script src="client/js/modal.js"></script>
     <script src="client/js/forwarding.js"></script>

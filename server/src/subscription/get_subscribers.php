@@ -1,5 +1,6 @@
 <?php
-require_once '../actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
+require_once __DIR__ . '../../services/UserService.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 

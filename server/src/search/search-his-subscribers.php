@@ -1,5 +1,6 @@
 <?php
-require_once '../actions/helpers.php';
+require_once __DIR__ . '../../actions/helpers.php';
+require_once __DIR__ . '../../services/UserService.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -13,30 +14,4 @@ if (isset($data['name']) && isset($data['user_id'])) {
     echo json_encode($hisSubscriptions);
 } else {
     echo json_encode(['error' => 'Invalid request']);
-}
-
-function searchSubscribersByName($name, $user_id)
-{
-    try {
-        $conn = getPDO();
-
-        $sql = "SELECT users.name, users.avatar
-                FROM users
-                INNER JOIN subscriptions ON users.id = subscriptions.subscriber_id
-                WHERE subscriptions.target_user_id = :user_id
-                AND users.name LIKE :search";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
-        $stmt->bindValue(':search', "%{$name}%", PDO::PARAM_STR);
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $results;
-    } catch (PDOException $e) {
-        return ['error' => $e->getMessage()];
-    } finally {
-        if ($conn !== null) {
-            $conn = null;
-        }
-    }
 }

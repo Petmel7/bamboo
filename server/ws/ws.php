@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '../../vendor/autoload.php';
 require_once __DIR__ . '../../src/actions/helpers.php';
+require_once __DIR__ . '../../../server/src/services/UserService.php';
 
 use Workerman\Worker;
 
@@ -41,7 +42,31 @@ $ws_worker->onConnect = function ($connection) use (&$connectedUsers, &$connecti
 $ws_worker->onMessage = function ($connection, $data) use (&$connectedUsers, &$connectionUserMap) {
     $message = json_decode($data, true);
 
-    if (isset($message['action']) && $message['action'] === 'delete' && isset($message['message_id']) && isset($message['sender_id']) && isset($message['recipient_id'])) {
+    if (isset($message['action']) && $message['action'] === 'add_image' && isset($message['image_url'], $message['sender_id'], $message['recipient_id'])) {
+        $imageUrl = $message['image_url'];
+        $senderId = $message['sender_id'];
+        $recipientId = $message['recipient_id'];
+
+        saveMessageWithImage($imageUrl, $senderId, $recipientId);
+
+        $messages = getMessagesByRecipient($senderId, $recipientId);
+        $users = getAllUsers();
+
+        $responseData = [
+            'image_url' => $imageUrl,
+            'messages' => $messages,
+            'users' => $users
+        ];
+
+        foreach ($connectedUsers as $userConnection) {
+            if (isset($connectionUserMap[$userConnection->id])) {
+                list($senderIdMap, $recipientIdMap) = $connectionUserMap[$userConnection->id];
+                if ($senderId == $senderIdMap && $recipientId == $recipientIdMap) {
+                    $userConnection->send(json_encode(['add_image' => $responseData]));
+                }
+            }
+        }
+    } elseif (isset($message['action']) && $message['action'] === 'delete' && isset($message['message_id']) && isset($message['sender_id']) && isset($message['recipient_id'])) {
         $messageId = $message['message_id'];
         $senderId = $message['sender_id'];
         $recipientId = $message['recipient_id'];
