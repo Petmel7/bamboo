@@ -33,24 +33,36 @@ function deletePhoto($userId, $defaultImagePath)
     $conn = null;
 }
 
-function handleGetRequest($loggedInUsername)
+function handleGetRequest($loggedInUsername, $page, $limit)
 {
     try {
         $conn = getPDO();
+        $offset = ($page - 1) * $limit;
 
-        $sql = "SELECT name, avatar FROM users WHERE name <> ?";
+        // Перевірка на тип даних
+        if (!is_int($limit) || !is_int($offset)) {
+            throw new InvalidArgumentException('Limit and Offset must be integers');
+        }
+
+        $sql = "SELECT name, avatar FROM users WHERE name <> ? LIMIT ? OFFSET ?";
 
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$loggedInUsername]);
+        $stmt->bindValue(1, $loggedInUsername, PDO::PARAM_STR);
+        $stmt->bindValue(2, $limit, PDO::PARAM_INT);
+        $stmt->bindValue(3, $offset, PDO::PARAM_INT);
+        $stmt->execute();
 
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$users) {
+            $users = [];
+        }
 
         return $users;
     } catch (PDOException $e) {
         error_log($e->getMessage());
         return ['error' => $e->getMessage()];
     } finally {
-
         if ($conn !== null) {
             $conn = null;
         }
@@ -455,61 +467,61 @@ function removeSubscription($subscriber_id, $target_user_id)
     }
 }
 
-function saveMessage($senderId, $recipientId, $messageText)
-{
-    try {
-        $conn = getPDO();
+// function saveMessage($senderId, $recipientId, $messageText)
+// {
+//     try {
+//         $conn = getPDO();
 
-        $sent_at = date('Y-m-d H:i:s');
+//         $sent_at = date('Y-m-d H:i:s');
 
-        $sql = "INSERT INTO messages (sender_id, recipient_id, message_text, sent_at) 
-        VALUES (:sender_id, :recipient_id, :message_text, :sent_at)
-        ON DUPLICATE KEY UPDATE message_text = :message_text, sent_at = :sent_at";
+//         $sql = "INSERT INTO messages (sender_id, recipient_id, message_text, sent_at) 
+//         VALUES (:sender_id, :recipient_id, :message_text, :sent_at)
+//         ON DUPLICATE KEY UPDATE message_text = :message_text, sent_at = :sent_at";
 
-        $stmt = $conn->prepare($sql);
+//         $stmt = $conn->prepare($sql);
 
-        $stmt->bindParam(':sender_id', $senderId, PDO::PARAM_INT);
-        $stmt->bindParam(':recipient_id', $recipientId, PDO::PARAM_INT);
-        $stmt->bindParam(':message_text', $messageText, PDO::PARAM_STR);
-        $stmt->bindParam(':sent_at', $sent_at, PDO::PARAM_STR);
+//         $stmt->bindParam(':sender_id', $senderId, PDO::PARAM_INT);
+//         $stmt->bindParam(':recipient_id', $recipientId, PDO::PARAM_INT);
+//         $stmt->bindParam(':message_text', $messageText, PDO::PARAM_STR);
+//         $stmt->bindParam(':sent_at', $sent_at, PDO::PARAM_STR);
 
-        $stmt->execute();
+//         $stmt->execute();
 
-        return ['success' => 'Message sent successfully'];
-    } catch (PDOException $e) {
-        return ['error' => $e->getMessage()];
-    } finally {
-        if ($conn !== null) {
-            $conn = null;
-        }
-    }
-}
+//         return ['success' => 'Message sent successfully'];
+//     } catch (PDOException $e) {
+//         return ['error' => $e->getMessage()];
+//     } finally {
+//         if ($conn !== null) {
+//             $conn = null;
+//         }
+//     }
+// }
 
-function saveMessageWithImage($targetFile, $senderId, $recipientId)
-{
-    try {
-        $conn = getPDO();
+// function saveMessageWithImage($targetFile, $senderId, $recipientId)
+// {
+//     try {
+//         $conn = getPDO();
 
-        $sentAt = date('Y-m-d H:i:s');
+//         $sentAt = date('Y-m-d H:i:s');
 
-        $sql = "INSERT INTO messages (sender_id, recipient_id, image_url, sent_at) 
-        VALUES (:sender_id, :recipient_id, :image_url, :sent_at)";
+//         $sql = "INSERT INTO messages (sender_id, recipient_id, image_url, sent_at) 
+//         VALUES (:sender_id, :recipient_id, :image_url, :sent_at)";
 
-        $stmt = $conn->prepare($sql);
+//         $stmt = $conn->prepare($sql);
 
-        $stmt->bindParam(':sender_id', $senderId, PDO::PARAM_INT);
-        $stmt->bindParam(':recipient_id', $recipientId, PDO::PARAM_INT);
-        $stmt->bindParam(':image_url', $targetFile, PDO::PARAM_STR);
-        $stmt->bindParam(':sent_at', $sentAt, PDO::PARAM_STR);
+//         $stmt->bindParam(':sender_id', $senderId, PDO::PARAM_INT);
+//         $stmt->bindParam(':recipient_id', $recipientId, PDO::PARAM_INT);
+//         $stmt->bindParam(':image_url', $targetFile, PDO::PARAM_STR);
+//         $stmt->bindParam(':sent_at', $sentAt, PDO::PARAM_STR);
 
-        $stmt->execute();
+//         $stmt->execute();
 
-        return ['success' => ['Message sent successfully']];
-    } catch (PDOException $e) {
-        return ['error' => $e->getMessage()];
-    } finally {
-        if ($conn !== null) {
-            $conn = null;
-        }
-    }
-}
+//         return ['success' => ['Message sent successfully']];
+//     } catch (PDOException $e) {
+//         return ['error' => $e->getMessage()];
+//     } finally {
+//         if ($conn !== null) {
+//             $conn = null;
+//         }
+//     }
+// }
