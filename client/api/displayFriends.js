@@ -2,30 +2,55 @@
 let currentPage = 1;
 const limit = 10;
 
-document.getElementById('prevPage').addEventListener('click', () => {
+// document.addEventListener('DOMContentLoaded', function () {
+//     document.getElementById('prevPage').addEventListener('click', () => {
+//         if (currentPage > 1) {
+//             currentPage--;
+//             displayFriends(currentPage, limit);
+//         }
+//     });
+
+//     document.getElementById('nextPage').addEventListener('click', () => {
+//         currentPage++;
+//         displayFriends(currentPage, limit);
+//     });
+
+//     // Initial load
+//     displayFriends(currentPage, limit);
+// });
+
+
+
+function prevPage() {
     if (currentPage > 1) {
+        // console.log('prev->currentPage', currentPage);
+        // console.log('prev->limi', limit);
         currentPage--;
         displayFriends(currentPage, limit);
     }
-});
+}
 
-document.getElementById('nextPage').addEventListener('click', () => {
+function nextPage() {
+    // console.log('next->currentPage', currentPage);
+    // console.log('next->limi', limit);
     currentPage++;
     displayFriends(currentPage, limit);
-});
+}
 
-async function displayFriends(page = 1, limit = 10) {
+async function displayFriends(currentPage, limit) {
+    console.log('currentPage, limit', currentPage, limit)
     try {
         const response = await fetch('server/src/actions/friends.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ page, limit })
+            body: JSON.stringify({ currentPage, limit })
         });
 
         if (response.ok) {
             const friends = await response.json();
+            console.log('friends', friends);
             if (Array.isArray(friends)) {
                 generateFriendListItem(friends);
             } else {
@@ -62,21 +87,3 @@ function generateFriendListItem(friends) {
 
 // Initial load
 displayFriends(currentPage, limit);
-
-
-
-// function prevPage() {
-//     document.getElementById('prevPage');
-
-//     currentPage++;
-//     displayFriends(currentPage);
-// }
-
-// function nextPage() {
-//     document.getElementById('nextPage');
-
-//     if (currentPage > 1) {
-//         currentPage--;
-//         displayFriends(currentPage);
-//     }
-// }
