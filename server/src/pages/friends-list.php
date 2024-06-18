@@ -23,14 +23,13 @@ require_once __DIR__ . '../../actions/helpers.php';
 
     <ul class="friend-list" id="friendsDataContainer"></ul>
 
-    <!-- <div id="paginationContainer">
-        <button id="prevPage">Previous</button>
-        <button id="nextPage">Next</button>
-    </div> -->
-
-    <div id="paginationContainer">
-        <button id="prevPage" onclick="prevPage()">Previous</button>
-        <button id="nextPage" onclick="nextPage()">Next</button>
+    <div class="friend-pagination" id="paginationContainer">
+        <button class="material-symbols-outlined" id="prevPage" onclick="prevPage()">
+            navigate_before
+        </button>
+        <button class="material-symbols-outlined" id="nextPage" onclick="nextPage()">
+            navigate_next
+        </button>
     </div>
 
     <script src="client/js/toggleDarkMode.js"></script>

@@ -33,41 +33,31 @@ function deletePhoto($userId, $defaultImagePath)
     $conn = null;
 }
 
-// function handleGetRequest($loggedInUsername, $page, $limit)
-// {
-//     try {
-//         $conn = getPDO();
-//         $offset = ($page - 1) * $limit;
+function handleGetRequest($loggedInUsername, $limit, $offset)
+{
+    try {
+        $conn = getPDO();
 
-//         // Перевірка на тип даних
-//         if (!is_int($limit) || !is_int($offset)) {
-//             throw new InvalidArgumentException('Limit and Offset must be integers');
-//         }
+        $sql = "SELECT name, avatar FROM users WHERE name <> :loggedInUsername LIMIT :limit OFFSET :offset";
 
-//         $sql = "SELECT name, avatar FROM users WHERE name <> ? LIMIT ? OFFSET ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':loggedInUsername', $loggedInUsername, PDO::PARAM_STR);
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
 
-//         $stmt = $conn->prepare($sql);
-//         $stmt->bindValue(1, $loggedInUsername, PDO::PARAM_STR);
-//         $stmt->bindValue(2, $limit, PDO::PARAM_INT);
-//         $stmt->bindValue(3, $offset, PDO::PARAM_INT);
-//         $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//         if (!$users) {
-//             $users = [];
-//         }
-
-//         return $users;
-//     } catch (PDOException $e) {
-//         error_log($e->getMessage());
-//         return ['error' => $e->getMessage()];
-//     } finally {
-//         if ($conn !== null) {
-//             $conn = null;
-//         }
-//     }
-// }
+        return $users;
+    } catch (PDOException $e) {
+        error_log($e->getMessage());
+        return ['error' => $e->getMessage()];
+    } finally {
+        if ($conn !== null) {
+            $conn = null;
+        }
+    }
+}
 
 function deleteAllmessages($currentUserId, $otherUserId)
 {
